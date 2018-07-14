@@ -13,3 +13,27 @@
         </ul>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-4">
+        <canvas width="800" height="600" id="canvas"></canvas>
+    </div>
+    <script>
+        var canvas = document.getElementById('canvas');
+        console.log(canvas);
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            var someArray = @Html.Raw(Json.Encode(Model));
+            console.log(someArray);
+            ctx.beginPath();
+            ctx.moveTo(someArray[0].X, someArray[0].Y);
+            for (let i = 1; i < someArray.length; i++) {
+                ctx.lineTo(someArray[i].X, someArray[i].Y);
+            }
+            ctx.stroke();
+            ctx.font = "14px Georgia";
+            for (let i = 0; i < someArray.length; i++) {
+                ctx.fillText((i + "(" + someArray[i].X + "," + someArray[i].Y+")"), someArray[i].X + 20, someArray[i].Y -20);
+            }
+        }
+    </script>
+</div>
