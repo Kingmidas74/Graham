@@ -17,6 +17,14 @@
     @using (Html.BeginForm("Index", "Home", new { points2 = Model }, FormMethod.Post, new { id = "myForm" }))
     {
         @Html.AntiForgeryToken()
+        <label for="alg_sp">
+            <input type="radio" name="alg" value="spiral" id="alg_sp" checked="checked"/>
+            Эндрю (спираль)
+        </label>
+        <label for="alg_b">
+            <input type="radio" name="alg" value="base" id="alg_b"/>
+            Грехем (Основной)
+        </label>
         <div id="fields">
             @foreach (Point point in Model)
             {
@@ -34,25 +42,32 @@
         <canvas width="800" height="600" id="canvas"></canvas>
     </div>
     <script>
-        $(document).ready(function () {
-            $("#addItem").click(function () {
-
+        $(document).ready(function() {
+            $("#addItem").click(function() {
+                var canvas = document.getElementById('canvas');
+                console.log(canvas);
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext('2d');
+                    var someArray = @Html.Raw(Json.Encode(Model));
+                    console.log(someArray);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
                 $("#fields").append(
                     $(document.createElement('br'))
                 );
                 $("#fields").append(
                     $(document.createElement('input'))
-                        .attr('type', 'numer')
-                        .attr('name', 'point.Y')
-                        .attr('value', '0')
+                    .attr('type', 'numer')
+                    .attr('name', 'point.Y')
+                    .attr('value', '0')
                 );
                 $("#fields").append(
                     $(document.createElement('input'))
-                        .attr('type', 'number')
-                        .attr('name', 'point.X')
-                        .attr('value', '0')
+                    .attr('type', 'number')
+                    .attr('name', 'point.X')
+                    .attr('value', '0')
                 );
-                
+
             });
         });
 
@@ -62,6 +77,7 @@
             var ctx = canvas.getContext('2d');
             var someArray = @Html.Raw(Json.Encode(Model));
             console.log(someArray);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath();
             ctx.moveTo(someArray[0].X, someArray[0].Y);
             for (let i = 1; i < someArray.length; i++) {

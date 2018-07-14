@@ -15,7 +15,7 @@ namespace GrahamWeb.Controllers
             var points = PointCreator.ReadPointsFromFile(Server.MapPath(@"~/App_Data/input.txt"));
             var GS = new GrahamScan(points);
             var res = GS.GetSortPoints().ToList();
-            res = GrahamWithSpiral.ReorderNoCrossing(points.ToList());
+          //  res = GrahamWithSpiral.ReorderNoCrossing(points.ToList());
             return View(res);
         }
 
@@ -29,10 +29,17 @@ namespace GrahamWeb.Controllers
             {
                 points.Add(new Point(xValues[i], yValues[i]));
             }
-            var GS = new GrahamScan(points);
-            var res = GS.GetSortPoints().ToList();
-            res = GrahamWithSpiral.ReorderNoCrossing(points.ToList());
-            return View(res);
+
+            points.Sort();
+
+            if (collection["alg"].Equals("spiral"))
+            {
+                return View(GrahamWithSpiral.ReorderNoCrossing(points.ToList()));
+            }
+            else
+            {
+                return View(new GrahamScan(points).GetSortPoints().ToList());
+            }
         }
     }
 }
