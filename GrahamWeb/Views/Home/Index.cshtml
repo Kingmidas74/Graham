@@ -3,6 +3,13 @@
 }
 <div class="row">
     <div class="col-md-4">
-        
+        <ul>
+            @using GrahamAlg
+            @model IEnumerable<Point>
+            @foreach (Point point in Model)
+            {
+                <li>@point.X;@point.Y</li>
+            }
+        </ul>
     </div>
 </div>
