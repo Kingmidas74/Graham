@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrahamWeb", "GrahamWeb\GrahamWeb.csproj", "{3EFB5DDB-1C3A-4D4F-8985-16E0A7D56273}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrahamAlg", "GrahamAlg\GrahamAlg.csproj", "{1CABF96F-D415-48CE-932F-FCC24DB2A9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrahamConsole", "GrahamConsole\GrahamConsole.csproj", "{58D93D7C-9E20-42ED-8F32-94593782A705}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{3EFB5DDB-1C3A-4D4F-8985-16E0A7D56273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EFB5DDB-1C3A-4D4F-8985-16E0A7D56273}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EFB5DDB-1C3A-4D4F-8985-16E0A7D56273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CABF96F-D415-48CE-932F-FCC24DB2A9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CABF96F-D415-48CE-932F-FCC24DB2A9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CABF96F-D415-48CE-932F-FCC24DB2A9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CABF96F-D415-48CE-932F-FCC24DB2A9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D93D7C-9E20-42ED-8F32-94593782A705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D93D7C-9E20-42ED-8F32-94593782A705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D93D7C-9E20-42ED-8F32-94593782A705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D93D7C-9E20-42ED-8F32-94593782A705}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
