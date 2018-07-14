@@ -14,18 +14,48 @@
     </div>
 </div>
 <div class="row">
-    @using (Html.BeginForm("Recalculate","Home"))
+    @using (Html.BeginForm("Index", "Home", new { points2 = Model }, FormMethod.Post, new { id = "myForm" }))
     {
-
-        <input type="submit" value="Обработать" />
-
-    }  
+        @Html.AntiForgeryToken()
+        <div id="fields">
+            @foreach (Point point in Model)
+            {
+                @Html.EditorFor(x => point.X)
+                @Html.EditorFor(x => point.Y)
+                <br />
+            }
+        </div>
+        <input type="button" id="addItem" value="Добавить" />
+        <input type="submit" value="Отправить" />
+    }
 </div>
 <div class="row">
     <div class="col-lg-4">
         <canvas width="800" height="600" id="canvas"></canvas>
     </div>
     <script>
+        $(document).ready(function () {
+            $("#addItem").click(function () {
+
+                $("#fields").append(
+                    $(document.createElement('br'))
+                );
+                $("#fields").append(
+                    $(document.createElement('input'))
+                        .attr('type', 'numer')
+                        .attr('name', 'point.Y')
+                        .attr('value', '0')
+                );
+                $("#fields").append(
+                    $(document.createElement('input'))
+                        .attr('type', 'number')
+                        .attr('name', 'point.X')
+                        .attr('value', '0')
+                );
+                
+            });
+        });
+
         var canvas = document.getElementById('canvas');
         console.log(canvas);
         if (canvas.getContext) {

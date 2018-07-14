@@ -9,6 +9,7 @@ namespace GrahamWeb.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
             var points = PointCreator.ReadPointsFromFile(Server.MapPath(@"~/App_Data/input.txt"));
@@ -18,9 +19,20 @@ namespace GrahamWeb.Controllers
             return View(res);
         }
 
-        public ActionResult Recalculate()
+        [HttpPost]
+        public ActionResult Index(FormCollection collection)
         {
-            throw new NotImplementedException();
+            var points = new List<Point>();
+            var xValues = collection["point.X"].Split(',').Select(Int32.Parse).ToList();
+            var yValues = collection["point.Y"].Split(',').Select(Int32.Parse).ToList();
+            for (int i = 0; i < xValues.Count; i++)
+            {
+                points.Add(new Point(xValues[i], yValues[i]));
+            }
+            var GS = new GrahamScan(points);
+            var res = GS.GetSortPoints().ToList();
+            res = GrahamWithSpiral.ReorderNoCrossing(points.ToList());
+            return View(res);
         }
     }
 }
