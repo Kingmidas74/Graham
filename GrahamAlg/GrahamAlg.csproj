@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GrahamScan.cs" />
+    <Compile Include="GrahamWithSpiral.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpiralLevel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

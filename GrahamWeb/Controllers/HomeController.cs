@@ -14,7 +14,13 @@ namespace GrahamWeb.Controllers
             var points = PointCreator.ReadPointsFromFile(Server.MapPath(@"~/App_Data/input.txt"));
             var GS = new GrahamScan(points);
             var res = GS.GetSortPoints().ToList();
+            res = GrahamWithSpiral.ReorderNoCrossing(points.ToList());
             return View(res);
+        }
+
+        public ActionResult Recalculate()
+        {
+            throw new NotImplementedException();
         }
     }
 }

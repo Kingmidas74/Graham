@@ -9,7 +9,7 @@ namespace GrahamAlg
     {
         public static IEnumerable<Point> ReadPointsFromFile(String filePath)
         {
-            return File.ReadAllLines(filePath).Select(line => (Point)line).ToList();
+            return File.ReadAllLines(filePath).Select(e => e.Split(';').Select(int.Parse)).Select(e => new Point { X = e.First(), Y = e.Last() }).ToList();
         }
     }
 }
