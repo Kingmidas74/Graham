@@ -1,24 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GrahamAlg
 {
-    public class GrahamWithSpiral
+    public class Endru:ISortAlgorithms
     {
-        private static bool AreClockWise(Point a, Point b, Point c)
+        private readonly IEnumerable<Point> _points;
+
+        public Endru(IEnumerable<Point> points)
+        {
+            _points = points;
+        }
+
+        public IEnumerable<Point> GetSortPoints()
+        {
+            var reordering = Split(_points.ToList());
+            return reordering.Merge();
+        }
+
+        private bool AreClockWise(Point a, Point b, Point c)
         {
             return a.X * (b.Y - c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y) < 0;
         }
 
-        private static bool AreCounterClockWise(Point a, Point b, Point c)
+        private bool AreCounterClockWise(Point a, Point b, Point c)
         {
             return a.X * (b.Y - c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y) > 0; ;
         }
 
-        private static SpiralLevel Split(List<Point> source)
+        private SpiralLevel Split(List<Point> source)
         {
             var copy = source.ToList();
             if (source.Count <= 1) return new SpiralLevel { Value = copy };
@@ -65,13 +75,6 @@ namespace GrahamAlg
             reorder.Next = Split(source.Where(d => !used.Contains(d)).ToList());
 
             return reorder;
-        }
-
-        public static List<Point> ReorderNoCrossing(List<Point> source)
-        {
-
-            var reordering = Split(source);
-            return reordering.Merge();
         }
     }
 }

@@ -4,15 +4,12 @@ using System.Linq;
 
 namespace GrahamAlg
 {
-    /*
-     * Подробнее про алгоритм Грехема: https://habr.com/post/144921/ (но тут питон)
-     */
-    public class GrahamScan
+    public class Graham:ISortAlgorithms
     {
         private readonly List<Point> _initialPoints;
         private readonly List<Int32> _pointsIndexes;
 
-        public GrahamScan(IEnumerable<Point> initialPoints)
+        public Graham(IEnumerable<Point> initialPoints)
         {
             _initialPoints = initialPoints.ToList();
             _pointsIndexes = Enumerable.Range(0, _initialPoints.Count).ToList();

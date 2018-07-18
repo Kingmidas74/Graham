@@ -3,11 +3,17 @@ using System.Linq;
 
 namespace GrahamAlg
 {
-    public class Snake
+    public class Snake:ISortAlgorithms
     {
-        public static IEnumerable<Point> Sort(IEnumerable<Point> points)
+        private readonly IEnumerable<Point> _points;
+
+        public Snake(IEnumerable<Point> points)
         {
-            return points.OrderBy(p => p.X).ThenBy(p => p.Y);
+            _points = points;
+        }
+        public IEnumerable<Point> GetSortPoints()
+        {
+            return _points.OrderBy(p => p.X).ThenBy(p => p.Y);
         }
     }
 }
