@@ -17,15 +17,14 @@
     @using (Html.BeginForm("Index", "Home", new { points2 = Model }, FormMethod.Post, new { id = "myForm" }))
     {
         @Html.AntiForgeryToken()
-        <!--<label for="alg_sp">
+        <label for="alg_sp">
             <input type="radio" name="alg" value="spiral" id="alg_sp" checked="checked"/>
             Эндрю (спираль)
         </label>
         <label for="alg_b">
             <input type="radio" name="alg" value="base" id="alg_b"/>
-            Грехем (Основной)
+            Змейка
         </label>
-        -->
         <div id="fields">
             @foreach (Point point in Model)
             {

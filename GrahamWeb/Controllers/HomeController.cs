@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using GrahamAlg;
 
@@ -13,8 +11,6 @@ namespace GrahamWeb.Controllers
         public ActionResult Index()
         {
             var points = PointCreator.ReadPointsFromFile(Server.MapPath(@"~/App_Data/input.txt"));
-            //var GS = new GrahamScan(points);
-            //var res = GS.GetSortPoints().ToList();
             var  res = GrahamWithSpiral.ReorderNoCrossing(points.ToList());
             return View(res);
         }
@@ -22,25 +18,10 @@ namespace GrahamWeb.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection collection)
         {
-            var points = new List<Point>();
             var xValues = collection["point.X"].Split(',').Select(Int32.Parse).ToList();
             var yValues = collection["point.Y"].Split(',').Select(Int32.Parse).ToList();
-            for (int i = 0; i < xValues.Count; i++)
-            {
-                points.Add(new Point(xValues[i], yValues[i]));
-            }
-
-            points.Sort();
-
-            return View(GrahamWithSpiral.ReorderNoCrossing(points.ToList()));
-            if (collection["alg"].Equals("spiral"))
-            {
-                return View(GrahamWithSpiral.ReorderNoCrossing(points.ToList()));
-            }
-            else
-            {
-                return View(new GrahamScan(points).GetSortPoints().ToList());
-            }
+            var points = xValues.Select((t, i) => new Point(t, yValues[i])).ToList();
+            return View(collection["alg"].Equals("spiral") ? GrahamWithSpiral.ReorderNoCrossing(points.ToList()) : Snake.Sort(points).ToList());
         }
     }
 }
